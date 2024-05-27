@@ -11,11 +11,10 @@
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-search.css">
-        <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         #map {
-            width: 930px;
-            height: 642px;
+            width: 909px;
+            height: 1244px;
         }
         </style>
         <title></title>
@@ -33,7 +32,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-measure.js"></script>
         <script src="js/leaflet-search.js"></script>
         <script src="data/Road_1.js"></script>
         <script src="data/Feature__2.js"></script>
@@ -41,7 +39,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[7.535029655098588,37.87842826953455],[7.5519988667985,37.90303362649942]]);
+        }).fitBounds([[7.536989465784515,37.873631872899836],[7.5600229283300555,37.89059964881795]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -67,18 +65,6 @@
             popup.update();
           }
         }, true);
-        var measureControl = new L.Control.Measure({
-            position: 'topleft',
-            primaryLengthUnit: 'meters',
-            secondaryLengthUnit: 'kilometers',
-            primaryAreaUnit: 'sqmeters',
-            secondaryAreaUnit: 'hectares'
-        });
-        measureControl.addTo(map);
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-        .innerHTML = '';
-        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-        .className += ' fas fa-ruler';
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -148,14 +134,14 @@
             return {
                 pane: 'pane_Road_1',
                 opacity: 1,
-                color: 'rgba(247,247,247,1.0)',
+                color: 'rgba(251,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(150,150,150,1.0)',
+                fillColor: 'rgba(164,113,88,1.0)',
                 interactive: true,
             }
         }
@@ -176,8 +162,40 @@
         function pop_Feature__2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">Name</th>\
-                        <td class="visible-with-data" id="Name">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['OID_'] !== null ? autolinker.link(feature.properties['OID_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FolderPath'] !== null ? autolinker.link(feature.properties['FolderPath'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SymbolID'] !== null ? autolinker.link(feature.properties['SymbolID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AltMode'] !== null ? autolinker.link(feature.properties['AltMode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Base'] !== null ? autolinker.link(feature.properties['Base'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Clamped'] !== null ? autolinker.link(feature.properties['Clamped'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Extruded'] !== null ? autolinker.link(feature.properties['Extruded'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Snippet'] !== null ? autolinker.link(feature.properties['Snippet'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopupInfo'] !== null ? autolinker.link(feature.properties['PopupInfo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -189,7 +207,7 @@
 
         function style_Feature__2_0(feature) {
             switch(String(feature.properties['Name'])) {
-                case '[Presedent_House':
+                default:
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -200,11 +218,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(93,255,239,1.0)',
+                fillColor: 'rgba(222,238,121,1.0)',
                 interactive: true,
             }
                     break;
-                case '1':
+                case 'A PLUS CAFE':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -215,547 +233,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,181,98,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '10':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(251,185,130,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '11':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(248,168,127,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '12':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(246,159,115,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '13':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(244,176,139,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '14':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(241,199,170,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '15':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(239,206,175,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '16':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(237,207,187,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '17':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(234,185,154,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '18':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(241,196,157,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '19':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,230,205,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '2':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,228,201,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '20':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,226,197,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '21':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,223,192,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '22':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,221,188,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '23':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,219,184,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '24':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,217,180,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '25':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,215,176,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '26':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,213,172,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '27':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,211,168,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '28':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,209,163,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '29':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,206,159,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '3':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,203,153,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '30':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,200,148,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '31':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,197,143,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '32':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,193,138,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '33':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,190,133,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '34':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,187,128,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '35':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,184,122,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '36':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,181,117,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '37':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,177,112,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '4':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,174,107,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '5':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,171,102,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '6':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,168,98,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '7':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,165,94,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '8':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,162,89,1.0)',
-                interactive: true,
-            }
-                    break;
-                case '9':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,159,85,1.0)',
+                fillColor: 'rgba(214,14,134,1.0)',
                 interactive: true,
             }
                     break;
@@ -770,7 +248,22 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,155,80,1.0)',
+                fillColor: 'rgba(61,103,227,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'AGRICULTURE BLD':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(84,242,121,1.0)',
                 interactive: true,
             }
                     break;
@@ -785,7 +278,37 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,152,76,1.0)',
+                fillColor: 'rgba(157,74,234,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B-129':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,178,218,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'B-143':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(143,68,72,1.0)',
                 interactive: true,
             }
                     break;
@@ -800,22 +323,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,149,71,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'CA_Bg':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,146,67,1.0)',
+                fillColor: 'rgba(109,203,183,1.0)',
                 interactive: true,
             }
                     break;
@@ -830,22 +338,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,143,63,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Caffe_2':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,140,59,1.0)',
+                fillColor: 'rgba(132,125,20,1.0)',
                 interactive: true,
             }
                     break;
@@ -860,7 +353,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(253,139,57,1.0)',
+                fillColor: 'rgba(110,129,189,1.0)',
                 interactive: true,
             }
                     break;
@@ -875,22 +368,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(252,137,55,1.0)',
-                interactive: true,
-            }
-                    break;
-                case 'Caffe_5':
-                    return {
-                pane: 'pane_Feature__2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(251,135,53,1.0)',
+                fillColor: 'rgba(49,152,255,1.0)',
                 interactive: true,
             }
                     break;
@@ -905,11 +383,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(251,133,51,1.0)',
+                fillColor: 'rgba(32,91,201,1.0)',
                 interactive: true,
             }
                     break;
-                case 'CEBA_Bg':
+                case 'CET Building':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -920,11 +398,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(250,131,49,1.0)',
+                fillColor: 'rgba(236,36,229,1.0)',
                 interactive: true,
             }
                     break;
-                case 'CETBuilding':
+                case 'CET-registrar':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -935,7 +413,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(250,129,46,1.0)',
+                fillColor: 'rgba(244,252,99,1.0)',
                 interactive: true,
             }
                     break;
@@ -950,7 +428,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(249,128,44,1.0)',
+                fillColor: 'rgba(179,96,171,1.0)',
                 interactive: true,
             }
                     break;
@@ -965,7 +443,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(248,126,42,1.0)',
+                fillColor: 'rgba(172,95,71,1.0)',
                 interactive: true,
             }
                     break;
@@ -980,11 +458,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(248,124,40,1.0)',
+                fillColor: 'rgba(111,148,74,1.0)',
                 interactive: true,
             }
                     break;
-                case 'CSC_Bg':
+                case 'COLLEGE OF BUSINESS AND ECONOMICS':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -995,7 +473,67 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(247,122,38,1.0)',
+                fillColor: 'rgba(83,140,163,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'College of Natural & Applied':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(153,16,151,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'COLLEGE OF SOCIAL SCIENCE':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(88,73,201,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Comman Toilet':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(162,224,121,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Community School':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(91,185,138,1.0)',
                 interactive: true,
             }
                     break;
@@ -1010,7 +548,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(247,120,36,1.0)',
+                fillColor: 'rgba(96,234,122,1.0)',
                 interactive: true,
             }
                     break;
@@ -1025,7 +563,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(73,246,222,1.0)',
+                fillColor: 'rgba(129,181,221,1.0)',
                 interactive: true,
             }
                     break;
@@ -1040,7 +578,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(120,245,204,1.0)',
+                fillColor: 'rgba(223,108,13,1.0)',
                 interactive: true,
             }
                     break;
@@ -1055,11 +593,30 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(245,115,30,1.0)',
+                fillColor: 'rgba(107,184,175,1.0)',
                 interactive: true,
             }
                     break;
-                case 'Gada_Caffe':
+                case 'Female Dorimtory':
+                    return {
+                pane: 'pane_Feature__2',
+                interactive: true,
+            }
+                    break;
+                case 'Female Dorimtory-Site':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(244,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Female Toilets':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -1070,7 +627,22 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(244,113,28,1.0)',
+                fillColor: 'rgba(44,189,208,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Geda_Caffe':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,216,223,1.0)',
                 interactive: true,
             }
                     break;
@@ -1085,7 +657,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,111,25,1.0)',
+                fillColor: 'rgba(16,158,23,1.0)',
                 interactive: true,
             }
                     break;
@@ -1100,7 +672,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(243,109,23,1.0)',
+                fillColor: 'rgba(77,154,79,1.0)',
                 interactive: true,
             }
                     break;
@@ -1115,7 +687,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(242,107,21,1.0)',
+                fillColor: 'rgba(109,186,141,1.0)',
                 interactive: true,
             }
                     break;
@@ -1130,11 +702,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(242,105,19,1.0)',
+                fillColor: 'rgba(191,70,68,1.0)',
                 interactive: true,
             }
                     break;
-                case 'New Enginering_Lab':
+                case 'Male Dormitory':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -1145,7 +717,63 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(231,91,11,1.0)',
+                fillColor: 'rgba(160,180,57,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Male Dormitory (Durame)-Site':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(249,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Male Dormitory-Site':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(255,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Male Toilets':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(52,146,57,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'New Enginering_Lab(001)':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(186,61,231,1.0)',
                 interactive: true,
             }
                     break;
@@ -1160,7 +788,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(217,72,1,1.0)',
+                fillColor: 'rgba(150,52,189,1.0)',
                 interactive: true,
             }
                     break;
@@ -1175,7 +803,22 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(212,70,1,1.0)',
+                fillColor: 'rgba(140,107,67,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Others':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,81,169,1.0)',
                 interactive: true,
             }
                     break;
@@ -1190,7 +833,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(207,68,1,1.0)',
+                fillColor: 'rgba(209,116,209,1.0)',
                 interactive: true,
             }
                     break;
@@ -1205,11 +848,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(202,66,1,1.0)',
+                fillColor: 'rgba(130,65,235,1.0)',
                 interactive: true,
             }
                     break;
-                case 'Poultry centeráˆ­':
+                case 'Poultry Center':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -1220,7 +863,22 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(196,64,1,1.0)',
+                fillColor: 'rgba(204,69,94,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Presedent_House':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(179,75,125,1.0)',
                 interactive: true,
             }
                     break;
@@ -1235,7 +893,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(191,63,2,1.0)',
+                fillColor: 'rgba(161,81,211,1.0)',
                 interactive: true,
             }
                     break;
@@ -1250,7 +908,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(186,61,2,1.0)',
+                fillColor: 'rgba(179,80,65,1.0)',
                 interactive: true,
             }
                     break;
@@ -1265,7 +923,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(181,59,2,1.0)',
+                fillColor: 'rgba(135,114,78,1.0)',
                 interactive: true,
             }
                     break;
@@ -1280,7 +938,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(2,170,176,1.0)',
+                fillColor: 'rgba(55,57,183,1.0)',
                 interactive: true,
             }
                     break;
@@ -1295,7 +953,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(170,55,2,1.0)',
+                fillColor: 'rgba(120,190,220,1.0)',
                 interactive: true,
             }
                     break;
@@ -1303,18 +961,18 @@
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(35,255,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(3,218,24,1.0)',
+                fillColor: 'rgba(69,243,11,1.0)',
                 interactive: true,
             }
                     break;
-                case 'Staff_dorimotory site':
+                case 'Staff Residential':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -1325,7 +983,22 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(160,77,3,1.0)',
+                fillColor: 'rgba(175,203,90,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Staff Toilet':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(29,217,117,1.0)',
                 interactive: true,
             }
                     break;
@@ -1340,7 +1013,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(156,96,3,1.0)',
+                fillColor: 'rgba(68,178,117,1.0)',
                 interactive: true,
             }
                     break;
@@ -1355,7 +1028,22 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(151,116,3,1.0)',
+                fillColor: 'rgba(136,71,106,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Student Caffe':
+                    return {
+                pane: 'pane_Feature__2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(66,54,175,1.0)',
                 interactive: true,
             }
                     break;
@@ -1370,11 +1058,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(146,135,3,1.0)',
+                fillColor: 'rgba(229,71,174,1.0)',
                 interactive: true,
             }
                     break;
-                case 'Un5':
+                case 'Tariku-Caffe':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -1385,7 +1073,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(141,154,3,1.0)',
+                fillColor: 'rgba(141,206,88,1.0)',
                 interactive: true,
             }
                     break;
@@ -1400,7 +1088,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(137,174,3,1.0)',
+                fillColor: 'rgba(31,146,144,1.0)',
                 interactive: true,
             }
                     break;
@@ -1415,11 +1103,11 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(40,188,193,1.0)',
+                fillColor: 'rgba(44,57,168,1.0)',
                 interactive: true,
             }
                     break;
-                default:
+                case 'Waste Treatment PLANT':
                     return {
                 pane: 'pane_Feature__2',
                 opacity: 1,
@@ -1430,7 +1118,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(127,212,4,1.0)',
+                fillColor: 'rgba(203,13,159,1.0)',
                 interactive: true,
             }
                     break;
@@ -1467,13 +1155,13 @@
             return {
                 pane: 'pane_boundary_3',
                 opacity: 1,
-                color: 'rgba(53,121,177,1.0)',
+                color: 'rgba(207,35,35,1.0)',
                 dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 4.0,
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_boundary_3');
@@ -1481,7 +1169,7 @@
         map.getPane('pane_boundary_3').style['mix-blend-mode'] = 'normal';
         var layer_boundary_3 = new L.geoJson(json_boundary_3, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_boundary_3',
             layerName: 'layer_boundary_3',
             pane: 'pane_boundary_3',
@@ -1489,6 +1177,7 @@
             style: style_boundary_3_0,
         });
         bounds_group.addLayer(layer_boundary_3);
+        map.addLayer(layer_boundary_3);
         setBounds();
         map.addControl(new L.Control.Search({
             layer: layer_Feature__2,
